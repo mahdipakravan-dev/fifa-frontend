@@ -14,11 +14,13 @@ const Home: NextPage = () => {
                 <span className={"text-4xl pt-4 font-bold"}>Dicover all about sport</span>
                 <p className={"mt-2"}>Search millions of jobs and get the inside scoop on companies.
                     Wait for what? Let’s get start it!</p>
-            </div>
 
-            <div className={"flex between items-center mt-10 w-full"}>
-                <button className={"bg-blue-800 p-2 mr-2 w-full rounded"}>Login</button>
-                <button className={"p-2 mr-2 w-full"}>SignUp</button>
+
+
+                <div className={"flex between items-center mt-10 w-full"}>
+                    <button className={"bg-blue-800 p-2 mr-2 w-full rounded"}>Login</button>
+                    <button className={"p-2 mr-2 w-full"}>SignUp</button>
+                </div>
             </div>
         </Layout>
     )
