@@ -20,9 +20,20 @@
     }
 }
 
+@keyframes fadeOutOpacity {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
 .modal_wrapper {
     @apply transition ease-in-out delay-150;
-    position : absolute;
+    position : fixed;
     bottom: 0;
     background : rgba(0,0,0,0.4);
     height : 100vh;
@@ -40,6 +51,10 @@
     width : 100%;
     border-radius : 40px 40px 0 0;
     z-index: 3;
+}
+
+.modal_out {
+    animation: fadeOutOpacity;
 }
 
 @media screen and (min-width : 640px){
