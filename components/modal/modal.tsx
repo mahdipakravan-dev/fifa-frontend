@@ -21,9 +21,11 @@ export const Modal = (props: Props) => {
                         <h1 className={"text-3xl"}>Login Page</h1>
                         <p className={"text-slate-600 mt-1"}>login page is so nice</p>
                     </div>
-                    <Input placeholder={"Salam"}/>
-                    <Input placeholder={"Salam"} className={"mt-4"}/>
-                    <Button className={"mt-4"}>Login</Button>
+                    <form onSubmit={(e) => {e.preventDefault()}}>
+                        <Input placeholder={"Email address : "} type={"email"}/>
+                        <Input placeholder={"Password"} type={"password"} className={"mt-4"}/>
+                        <Button type={"submit"} className={"mt-4"}>Login</Button>
+                    </form>
                 </div>
             </div>
         </div>
