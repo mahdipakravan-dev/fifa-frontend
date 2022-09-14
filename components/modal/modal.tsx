@@ -8,6 +8,8 @@ const unmountedStyle2 = {transform : "translateY(100px)" , transition: "all 1000
 
 type Props = {
     onBackClick : any
+    title ?: string
+    desc ?: string
 } & PropsWithChildren;
 export const Modal : FC<Props> = (props) => {
     const [mount , setMount] = useState(true)
@@ -28,10 +30,12 @@ export const Modal : FC<Props> = (props) => {
                     <div className={styles.modal}>
                         {/*<span className={styles.title}>Login into account</span>*/}
                         <div className={"px-4"} style={mount ? {} : unmountedStyle2}>
-                            <div className={"mb-10"}>
-                                <h1 className={"text-3xl"}>Login Page</h1>
-                                <p className={"text-slate-600 mt-1"}>login page is so nice</p>
-                            </div>
+                            {props.desc || props.title && (
+                                <div className={"mb-10"}>
+                                    {props.title && <h1 className={"text-3xl"}>{props.title}</h1>}
+                                    {props.desc && <p className={"text-slate-600 mt-1"}>{props.desc}</p>}
+                                </div>
+                            )}
                             <div>{props.children}</div>
                         </div>
                     </div>

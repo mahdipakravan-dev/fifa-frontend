@@ -1,12 +1,7 @@
 import type {NextPage} from 'next'
-import Image from "next/image"
 import {Layout} from "../components/layout";
-import {Modal} from "../components/modal/modal";
-import Popup from "reactjs-popup"
-import {useState} from "react";
-import {useMountTransition} from "../libs/hooks";
 import {usePopup} from "../libs/context/popup.hook";
-import {POPUP_LOGIN} from "../libs/context/popup.constants";
+import {POPUP_LOGIN, POPUP_REGISTER} from "../libs/context/popup.constants";
 
 const Home: NextPage = () => {
     const {openPopup} = usePopup()
@@ -24,7 +19,9 @@ const Home: NextPage = () => {
                     <button className={"bg-blue-800 p-2 mr-2 w-full rounded"} onClick={() => openPopup({
                         popupName : POPUP_LOGIN
                     })}>Login</button>
-                    <button className={"p-2 mr-2 w-full"}>SignUp</button>
+                    <button onClick={() => openPopup({
+                        popupName : POPUP_REGISTER
+                    })} className={"p-2 mr-2 w-full"}>SignUp</button>
                 </div>
             </div>
         </Layout>
