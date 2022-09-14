@@ -7,18 +7,7 @@ type Props = {
 };
 export const Modal = (props: Props) => {
     return (
-        <div onClick={props.onBackClick} style={{
-            position : "absolute",
-            bottom: "0",
-            background : "rgba(0,0,0,0.6)",
-            opacity : "1",
-            height : "100vh",
-            width : "100vw",
-            display : "flex",
-            justifyContent : "center",
-            alignItems : "end",
-            zIndex : 2
-        }} className={"transition transition-200 ease-in"}>
+        <div onClick={props.onBackClick} className={styles.modal_wrapper}>
             <div className={styles.modal}>
                 {/*<span className={styles.title}>Login into account</span>*/}
                 <div className={"px-4"}>

@@ -11,7 +11,12 @@ const Home: NextPage = () => {
 
     return (
         <Layout className={"h-screen flex flex-col md:flex-row md:justify-center justify-between items-center p-6"}>
-            {showModal && <Modal onBackClick={() => setShowModal(prev => !prev)}/>}
+            {showModal && <Modal onBackClick={(e : any) => {
+                if(e.currentTarget !== e.target) return
+                e.preventDefault()
+                e.stopPropagation()
+                setShowModal(prev => !prev)
+            }}/>}
             <div className={"flex justify-center md:px-14"}>
                 <img alt={"mbappe"} src={"/images/slider-1.png"} className={"object-contain object-center"}/>
             </div>
