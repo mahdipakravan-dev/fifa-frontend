@@ -1,6 +1,8 @@
 import {createContext} from "react";
 
 export const PopupContext = createContext<{
-    bool : boolean,
-    setBool : () => void
-}>({bool : false , setBool : () => {}});
+    popupName ?: string,
+    popupData ?: any
+    openPopup : (popupName : string , popupData : any) => void,
+    closeAllPopup : () => void
+}>({openPopup : () => {} , closeAllPopup : () => {}});

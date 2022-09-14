@@ -6,9 +6,24 @@ import {PopupConsumer} from "../libs/context/popup-consumer";
 import {useState} from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [bool , setBool] = useState(false);
+  const [popupName , setPopupName] = useState("");
+  const [popupData , setPopUpData] = useState();
+
+  const openPopup = (popupName : string , popUpData : any ) => {
+      setPopupName(popupName)
+      setPopUpData(popUpData)
+    }
+
   return (
-      <PopupContext.Provider value={{bool,setBool : () => setBool(prev => !prev)}}>
+      <PopupContext.Provider value={{
+          popupName,
+          popupData,
+          openPopup,
+          closeAllPopup : () => {
+              setPopupName("")
+              setPopUpData(undefined)
+          }
+      }}>
         <PopupConsumer/>
         <Component {...pageProps} />
       </PopupContext.Provider>
