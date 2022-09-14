@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {PopupContext} from "../../../libs/context/popup-context";
+import {PopupContext} from "../../../libs/context/popup.context";
 import {Modal} from "../modal";
 import {Input} from "../../ui/input";
 import {Button} from "../../ui/button";

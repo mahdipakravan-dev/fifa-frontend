@@ -1,28 +1,21 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import 'reactjs-popup/dist/index.css';
-import {PopupContext} from "../libs/context/popup-context";
-import {PopupConsumer} from "../libs/context/popup-consumer";
+import {PopupConsumer, PopupContext} from "../libs/context/popup.context";
 import {useState} from "react";
+import {OpenPopupOptions, PopupType} from "../libs/context/popup.type";
+import {options} from "tsconfig-paths/lib/options";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [popupName , setPopupName] = useState("");
-  const [popupData , setPopUpData] = useState();
+  const [popupOptions , setPopupOptions] = useState<OpenPopupOptions>({});
 
-  const openPopup = (popupName : string , popUpData : any ) => {
-      setPopupName(popupName)
-      setPopUpData(popUpData)
-    }
+  const openPopup = (options : OpenPopupOptions) => setPopupOptions(prev => ({...prev, ...options}))
 
   return (
       <PopupContext.Provider value={{
-          popupName,
-          popupData,
+          ...popupOptions,
           openPopup,
-          closeAllPopup : () => {
-              setPopupName("")
-              setPopUpData(undefined)
-          }
+          closeAllPopup : () => openPopup({popupName : undefined, popupData : undefined})
       }}>
         <PopupConsumer/>
         <Component {...pageProps} />
