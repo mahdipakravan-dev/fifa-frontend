@@ -1,21 +1,27 @@
 import {useEffect, useState} from "react";
 
-export const useMountTransition = (isMounted : boolean, unmountDelay : number) : boolean => {
-    const [hasTransitionedIn, setHasTransitionedIn] = useState(false);
+export function useDelayUnmount({delayTime,isMounted,afterEnd = () => {}} : {
+    isMounted: boolean,
+    delayTime: number,
+    afterEnd ?: Function
+}) {
+    const [ shouldRender, setShouldRender ] = useState(false);
 
     useEffect(() => {
-        let timeoutId : NodeJS.Timeout;
-
-        if (isMounted && !hasTransitionedIn) {
-            setHasTransitionedIn(true);
-        } else if (!isMounted && hasTransitionedIn) {
-            timeoutId = setTimeout(() => setHasTransitionedIn(false), unmountDelay);
+        let timeoutId: NodeJS.Timeout;
+        if (isMounted && !shouldRender) {
+            setShouldRender(true);
         }
-
-        return () => {
-            clearTimeout(timeoutId);
+        else if(!isMounted && shouldRender) {
+            timeoutId = setTimeout(
+                () => {
+                    setShouldRender(false)
+                    afterEnd()
+                },
+                delayTime
+            );
         }
-    }, [unmountDelay, isMounted, hasTransitionedIn]);
-
-    return hasTransitionedIn;
+        return () => clearTimeout(timeoutId);
+    }, [isMounted, delayTime, shouldRender]);
+    return shouldRender;
 }

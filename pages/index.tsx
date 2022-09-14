@@ -5,8 +5,11 @@ import {Modal} from "../components/modal/modal";
 import Popup from "reactjs-popup"
 import {useState} from "react";
 import {useMountTransition} from "../libs/hooks";
+import {usePopup} from "../libs/context/popup.hook";
+import {POPUP_LOGIN} from "../libs/context/popup.constants";
 
 const Home: NextPage = () => {
+    const {openPopup} = usePopup()
 
     return (
         <Layout className={"h-screen flex flex-col md:flex-row md:justify-center justify-between items-center p-6"}>
@@ -18,7 +21,9 @@ const Home: NextPage = () => {
                 <p className={"mt-4 text-slate-400"}>Search millions of jobs and get the inside scoop on companies.
                     Wait for what? Let’s get start it!</p>
                 <div className={"flex between items-center mt-10 w-full"}>
-                    {/*<button className={"bg-blue-800 p-2 mr-2 w-full rounded"} onClick={() => setShowModal(prev => !prev)}>Login</button>*/}
+                    <button className={"bg-blue-800 p-2 mr-2 w-full rounded"} onClick={() => openPopup({
+                        popupName : POPUP_LOGIN
+                    })}>Login</button>
                     <button className={"p-2 mr-2 w-full"}>SignUp</button>
                 </div>
             </div>
