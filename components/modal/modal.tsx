@@ -1,13 +1,13 @@
 import styles from "./modal.module.css"
 import {Input} from "../ui/input";
-import {Button} from "../ui/button";
+import {Button} from "../ui/button"
 
 type Props = {
-
+    onBackClick : any
 };
 export const Modal = (props: Props) => {
     return (
-        <div style={{
+        <div onClick={props.onBackClick} style={{
             position : "absolute",
             bottom: "0",
             background : "rgba(0,0,0,0.6)",
@@ -18,7 +18,7 @@ export const Modal = (props: Props) => {
             justifyContent : "center",
             alignItems : "end",
             zIndex : 2
-        }} className={""}>
+        }} className={"transition transition-200 ease-in"}>
             <div className={styles.modal}>
                 {/*<span className={styles.title}>Login into account</span>*/}
                 <div className={"px-4"}>
