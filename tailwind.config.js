@@ -10,9 +10,13 @@ module.exports = {
       colors:{
         ...colors,
         background: '#181829',
-        primaryText : '#FFFFFF'
+        popup: '#222232',
+        primaryText : '#FFFFFF',
+        secondary : '246BFD'
       }
     },
   },
-  plugins: [],
+  plugins: [
+      require("@tailwindcss/forms")
+  ],
 }

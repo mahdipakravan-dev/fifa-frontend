@@ -1,0 +1,24 @@
+.modal {
+    position: relative;
+    @apply bg-popup flex flex-col justify-center items-center py-8;
+    width : 100%;
+    min-height : 300px;
+    border-radius : 40px 40px 0 0;
+    z-index: 3;
+}
+
+.modal:after{
+    content: "";
+    @apply bg-slate-100 opacity-10 rounded;
+    position: absolute;
+    top: 6px;
+    width: 50%;
+    height: 6px;
+}
+
+.title {
+    @apply text-lg;
+    position: absolute;
+    top: 18px;
+    left: 20px;
+}
