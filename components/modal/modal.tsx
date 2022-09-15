@@ -1,5 +1,5 @@
 import styles from "./modal.module.css"
-import {FC, PropsWithChildren, useState} from "react";
+import React, {EventHandler, FC, MouseEventHandler, PropsWithChildren, useState} from "react";
 import {useDelayUnmount} from "../../libs/hooks";
 
 const mountedStyle = {opacity: 1, transition: "opacity 500ms ease-in"};
@@ -12,6 +12,7 @@ type Props = {
     desc ?: string
 } & PropsWithChildren;
 export const Modal : FC<Props> = (props) => {
+    console.log("AD" , props)
     const [mount , setMount] = useState(true)
     const shouldRenderChild = useDelayUnmount({
         delayTime : 1000,
@@ -19,7 +20,8 @@ export const Modal : FC<Props> = (props) => {
         afterEnd : props.onBackClick
     })
 
-    const toggleMount = () => {
+    const toggleMount = (e : React.MouseEvent<HTMLElement>) => {
+        if(e.target !== e.currentTarget) return;
         setMount(prev => !prev);
     }
 
