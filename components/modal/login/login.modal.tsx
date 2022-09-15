@@ -11,7 +11,7 @@ export const LoginModal = (props: Props) => {
     const {closeAllPopup} = useContext(PopupContext);
 
     return (
-        <Modal onBackClick={closeAllPopup} title={"This is Login"} desc={"login into this super fantastic application"}>
+        <Modal onBackClick={closeAllPopup} popupTitle={"This is Login"} desc={"login into this super fantastic application"}>
             <Input placeholder={"Email address : "} type={"email"}/>
             <Input placeholder={"Password"} type={"password"} className={"mt-4"}/>
             <Button type={"submit"} className={"mt-4"}>Login</Button>
