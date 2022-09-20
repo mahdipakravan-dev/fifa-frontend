@@ -1,0 +1,200 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  email: String!
+  password: String!
+  role: UserRole!
+  verified: Boolean!
+}
+
+enum UserRole {
+  CLIENT
+}
+
+type CreateAccountOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type LoginOutputDto {
+  error: String
+  ok: Boolean!
+  token: String
+}
+
+type UserProfileOutputDto {
+  error: String
+  ok: Boolean!
+  user: User
+}
+
+type EditAccountOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type VerifyAccountOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type Team {
+  name: String!
+  description: String!
+  avatarUrl: String!
+  homeTeam: [Team!]!
+  awayTeam: [Team!]!
+}
+
+type FindTeamOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type CreateTeamOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type UpdateTeamOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type Match {
+  stadiumName: String!
+  locationName: String!
+  homeTeam: Team
+  awayTeam: Team
+}
+
+type FindMatchOutputDto {
+  error: String
+  ok: Boolean!
+  pageNumber: Float
+  totalPages: Float
+  totalResults: Float
+  results: Match!
+}
+
+type CreateMatchOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type UpdateMatchOutputDto {
+  error: String
+  ok: Boolean!
+}
+
+type FindMatchesOutputDto {
+  error: String
+  ok: Boolean!
+  pageNumber: Float
+  totalPages: Float
+  totalResults: Float
+  results: [Match!]!
+}
+
+type Query {
+  account(userId: Float!): UserProfileOutputDto!
+  team_read(input: FindTeamInputDto!): FindTeamOutputDto!
+  match_read(input: FindMatchInputDto!): FindMatchOutputDto!
+  match_readMany(input: FindMatchesInputDto!): FindMatchesOutputDto!
+}
+
+input FindTeamInputDto {
+  name: String
+  description: String
+  avatarUrl: String
+  homeTeam: [TeamInputType!]
+  awayTeam: [TeamInputType!]
+}
+
+input TeamInputType {
+  name: String!
+  description: String!
+  avatarUrl: String!
+  homeTeam: [TeamInputType!]!
+  awayTeam: [TeamInputType!]!
+}
+
+input FindMatchInputDto {
+  stadiumName: String
+  locationName: String
+  homeTeam: TeamInputType
+  awayTeam: TeamInputType
+}
+
+input FindMatchesInputDto {
+  stadiumName: String
+  locationName: String
+  homeTeam: TeamInputType
+  awayTeam: TeamInputType
+}
+
+type Mutation {
+  account_register(input: CreateAccountDto!): CreateAccountOutputDto!
+  account_login(input: LoginAccountDto!): LoginOutputDto!
+  account_edit(input: EditAccountInputDto!): EditAccountOutputDto!
+  account_verify(input: VerifyAccountInputDto!): VerifyAccountOutputDto!
+  team_create(input: CreateTeamInputDto!): CreateTeamOutputDto!
+  team_update(input: UpdateTeamInputDto!): UpdateTeamOutputDto!
+  match_create(input: CreateMatchInputDto!): CreateMatchOutputDto!
+  match_update(input: UpdateMatchInputDto!): UpdateMatchOutputDto!
+}
+
+input CreateAccountDto {
+  email: String!
+  password: String!
+}
+
+input LoginAccountDto {
+  email: String!
+  password: String!
+}
+
+input EditAccountInputDto {
+  email: String
+  password: String
+  role: UserRole
+  verified: Boolean
+}
+
+input VerifyAccountInputDto {
+  code: String!
+}
+
+input CreateTeamInputDto {
+  name: String
+  description: String
+  avatarUrl: String
+  homeTeam: [TeamInputType!]
+  awayTeam: [TeamInputType!]
+}
+
+input UpdateTeamInputDto {
+  name: String
+  description: String
+  avatarUrl: String
+  homeTeam: [TeamInputType!]
+  awayTeam: [TeamInputType!]
+  teamId: Float!
+}
+
+input CreateMatchInputDto {
+  stadiumName: String!
+  locationName: String!
+  homeTeamId: String!
+  awayTeamId: String!
+}
+
+input UpdateMatchInputDto {
+  stadiumName: String
+  locationName: String
+  homeTeam: TeamInputType
+  awayTeam: TeamInputType
+  MatchId: Float!
+}

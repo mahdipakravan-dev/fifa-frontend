@@ -5,6 +5,8 @@ import {PopupConsumer, PopupContext} from "../libs/context/popup.context";
 import {useState} from "react";
 import {OpenPopupOptions, PopupType} from "../libs/context/popup.type";
 import {options} from "tsconfig-paths/lib/options";
+import {ApolloClient, ApolloProvider} from "@apollo/client";
+import {client} from "../graph/client";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [popupOptions , setPopupOptions] = useState<OpenPopupOptions>({});
@@ -12,14 +14,16 @@ function MyApp({ Component, pageProps }: AppProps) {
   const openPopup = (options : OpenPopupOptions) => setPopupOptions(prev => ({...prev, ...options}))
 
   return (
-      <PopupContext.Provider value={{
-          ...popupOptions,
-          openPopup,
-          closeAllPopup : () => openPopup({popupName : undefined, popupData : undefined})
-      }}>
-        <PopupConsumer/>
-        <Component {...pageProps} />
-      </PopupContext.Provider>
+      <ApolloProvider client={client}>
+          <PopupContext.Provider value={{
+              ...popupOptions,
+              openPopup,
+              closeAllPopup : () => openPopup({popupName : undefined, popupData : undefined})
+          }}>
+              <PopupConsumer/>
+              <Component {...pageProps} />
+          </PopupContext.Provider>
+      </ApolloProvider>
   )
 }
 
