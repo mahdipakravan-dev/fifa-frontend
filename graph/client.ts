@@ -6,11 +6,17 @@ export const client = new ApolloClient({
         typePolicies : {
             Query : {
                 fields : {
-                    // isLoggedIn : {
-                    //     read() {
-                    //         return isLoggedInVar
-                    //     }
-                    // }
+                    isLoggedIn : {
+                        read() {
+                            return true
+                        },
+                        merge() {
+                            return "MERGE"
+                        },
+                        keyArgs() {
+                            return "KEY"
+                        }
+                    }
                 }
             }
         }

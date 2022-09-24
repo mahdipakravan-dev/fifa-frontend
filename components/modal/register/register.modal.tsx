@@ -26,7 +26,7 @@ export const RegisterModal = (props: Props) => {
             })}>
                 <Input placeholder={"Email address : "} type={"email"} register={register("email")}/>
                 <Input placeholder={"Password"} type={"password"} className={"mt-4"} register={register("password")}/>
-                <Button type={"submit"} className={"mt-4"}>Login</Button>
+                <Button loading={loading} type={"submit"} className={"mt-4"}>Login</Button>
             </form>
         </Modal>
     );
