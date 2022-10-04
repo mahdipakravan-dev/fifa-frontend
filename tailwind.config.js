@@ -1,4 +1,4 @@
-const colors = require("tailwindcss/colors")
+const colors = require("tailwindcss/colors");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -7,16 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors:{
+      colors: {
         ...colors,
-        background: '#181829',
-        popup: '#222232',
-        primaryText : '#FFFFFF',
-        secondary : '246BFD'
-      }
+        primary: colors.blue["800"],
+        background: "#181829",
+        popup: "#222232",
+        primaryText: "#FFFFFF",
+        secondary: "246BFD",
+      },
     },
   },
-  plugins: [
-      require("@tailwindcss/forms")
-  ],
-}
+  plugins: [require("@tailwindcss/forms")],
+};
